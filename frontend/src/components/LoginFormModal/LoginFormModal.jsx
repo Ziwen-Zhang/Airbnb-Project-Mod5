@@ -27,6 +27,17 @@ function LoginFormModal() {
     }
   };
 
+  const loginDemo = async (e) => {
+    e.preventDefault();
+      const response = await dispatch(sessionActions.login({
+        "credential": "Demo-lition",
+        "password": "password"
+      }));
+      closeModal();
+    }
+
+
+
   const disableLoginButton = credential.length < 4 || password.length < 6;
 
   return (
@@ -35,27 +46,18 @@ function LoginFormModal() {
       <form onSubmit={handleSubmit}>
         <label>
           Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
+          <input type="text" value={credential}
+            onChange={(e) => setCredential(e.target.value)} required/>
         </label>
         <label>
           Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" value={password}
+            onChange={(e) => setPassword(e.target.value)} required/>
         </label>
-        {errors && (
-          <p className="error-message">{errors}</p>
-        )}
+        {errors && (<p className="error-message">{errors}</p>)}
         <button type="submit" disabled={disableLoginButton}>Log In</button>
       </form>
+        <button onClick={loginDemo}>Log in as Demo User</button>
     </>
   );
 }
