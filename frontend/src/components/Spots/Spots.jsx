@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
 import './Spots.css';
 import { useNavigate } from "react-router-dom";
+import StarAndRating from "./StarAndRating";
 
 function Spots() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function Spots() {
             />
             <div className="spotInfo">
                 <p>{spot.city}, {spot.state}</p>
-                <p>star icon {spot.avgRating ? spot.avgRating : 'New*'}</p>
+                <StarAndRating avgRating={spot.avgRating}/>
                 <p>{spot.price}/night</p>
             </div>
           </div>

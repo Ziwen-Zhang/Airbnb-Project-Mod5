@@ -10,10 +10,9 @@
     border: 1px solid #ccc; 
     padding: 16px;
     text-align: center; 
-    transition: transform 0.3s ease; 
-
     &:hover {
-        transform: scale(1.05);
+        background-color: lightgray;
+        cursor: pointer;
     }
   }
   
@@ -75,6 +74,12 @@
     border-radius: 8px;
     text-align: center;
   }
+
+  .reviewAndCount{
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
   
   .calloutBox p {
     font-size: 1.5rem;
@@ -93,4 +98,17 @@
       background-color: #0056b3;
     }
   }
+  
+  .eachReview {
+    margin-top: 20px;
+  }
+  
+  .reviewItem {
+    padding: 10px 0;
+  }
+  
+  .reviewItem p {
+    margin: 5px 0;
+  }
+  
   
