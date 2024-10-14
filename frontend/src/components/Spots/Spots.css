@@ -1,0 +1,96 @@
+.spotList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 16px; 
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .eachSpot {
+    border: 1px solid #ccc; 
+    padding: 16px;
+    text-align: center; 
+    transition: transform 0.3s ease; 
+
+    &:hover {
+        transform: scale(1.05);
+    }
+  }
+  
+
+  
+  .spotInfo {
+    padding: 8px 0;
+    font-size: 1rem; 
+  }
+  
+
+  /* .spotDetail {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin: 20px;
+  } */
+  
+  .imageArea {
+    display: grid;
+    grid-template-columns: 1fr 1fr
+  }
+  
+  .largeImageArea {
+
+  }
+
+  .spotLargeImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .smallImageArea {
+    display: grid;
+    grid-template-columns: 1fr 1fr
+  }
+  
+  .spotSmallImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .spotInfoArea {
+    display: grid;
+    grid-template-columns: 2fr 1fr
+  }
+  
+  .descriptionArea {
+    flex: 2;
+  }
+  
+  .calloutBox {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .calloutBox p {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .calloutBox button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .calloutBox button:hover {
+    background-color: #0056b3;
+  }
