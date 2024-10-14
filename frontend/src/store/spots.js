@@ -2,7 +2,7 @@ import { csrfFetch } from './csrf';
 
 const GET_SPOTS = 'spots/GET_SPOTS';
 const GET_SPOT_DETAIL = 'spots/GET_SPOT_DETAIL';
-
+const CREATE_SPOT = 'spots/CREATE_SPOT';
 
 const getAllSpots = (spots) => {
     return {
@@ -19,6 +19,13 @@ const getSpotDetailAction = (spot) => {
     };
 };
 
+
+const CreateSpot = (spotInfo) =>{
+    return {
+        type: CREATE_SPOT,
+        payload:spotInfo
+    }
+}
 
 export const getSpots = () => async (dispatch) => {
     const response = await csrfFetch('/api/spots');
@@ -52,6 +59,12 @@ export default function spotsReducer(state = initialState, action) {
                 ...state,
                 targetSpot: action.payload,
             };
+        }
+        case CREATE_SPOT :{
+            return {
+                ...state,
+                
+            }
         }
         default:
             return state;
