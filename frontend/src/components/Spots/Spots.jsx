@@ -36,7 +36,7 @@ function Spots() {
             />
             <div className="spotInfo">
                 <p>{spot.city}, {spot.state}</p>
-                <p>star icon {spot.avgRating ? spot.avgRating : 'New'}</p>
+                <p>star icon {spot.avgRating ? spot.avgRating : 'New*'}</p>
                 <p>{spot.price}/night</p>
             </div>
           </div>

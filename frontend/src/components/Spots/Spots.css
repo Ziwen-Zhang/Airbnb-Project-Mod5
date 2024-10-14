@@ -37,9 +37,9 @@
     grid-template-columns: 1fr 1fr
   }
   
-  .largeImageArea {
+  /* .largeImageArea {
 
-  }
+  } */
 
   .spotLargeImage {
     width: 100%;
@@ -89,8 +89,8 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    &:hover {
+      background-color: #0056b3;
+    }
   }
   
-  .calloutBox button:hover {
-    background-color: #0056b3;
-  }
