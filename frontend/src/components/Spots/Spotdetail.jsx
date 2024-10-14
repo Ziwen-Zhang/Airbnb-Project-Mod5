@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpotDetail } from "../../store/spots";
 import './Spots.css';
 import { useParams } from "react-router-dom";
-import StarAndRating from "./StarAndRating";
-import Test1 from "./Reviews";
+import  {StarAndRating}  from "../Reviews";
+import {Reviews} from "../Reviews";
 
 function SpotDetail() {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const allImages = spot.SpotImages
         </div>
       </div>
       <div className="reviewArea">
-          <Test1 spotId={spot.id}/>
+          <Reviews spotId={spot.id}/>
       </div>
     </div>
   );

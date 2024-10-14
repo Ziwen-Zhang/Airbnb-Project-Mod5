@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllReviews } from "../../store/review";
 import { useParams } from "react-router-dom";
-import './Spots.css';
+import './Reviews.css'
 
-function Test1() {
+function Reviews() {
   const dispatch = useDispatch();
   const { spotId } = useParams();
 
@@ -52,4 +52,4 @@ function Test1() {
   );
 }
 
-export default Test1;
+export default Reviews;
