@@ -16,7 +16,7 @@ function SpotDetail() {
     dispatch(getSpotDetail(spotId))
     .then(() => setIsLoading(false))
     .catch(() => setIsLoading(false))
-  }, [dispatch]);
+  }, [dispatch,spotId]);
 
   if (isLoading) {
     return <p>Loading...</p>;

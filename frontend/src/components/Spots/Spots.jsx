@@ -30,11 +30,7 @@ function Spots() {
       <div className="spotList">
         {Object.values(spots).map((spot) => (
           <div key={spot.id} className="eachSpot" title={spot.name} onClick={()=>redirecting(spot.id)}>
-            <img 
-              src={spot.previewImage} 
-              alt={spot.name} 
-              className="spotThumbnail"
-            />
+            <img src={spot.previewImage} alt={spot.name} className="spotThumbnail"/>
             <div className="spotInfo">
                 <p>{spot.city}, {spot.state}</p>
                 <StarAndRating avgRating={spot.avgRating}/>

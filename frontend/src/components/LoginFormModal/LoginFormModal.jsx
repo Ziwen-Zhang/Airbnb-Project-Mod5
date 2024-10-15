@@ -29,7 +29,7 @@ function LoginFormModal() {
 
   const loginDemo = async (e) => {
     e.preventDefault();
-      const response = await dispatch(sessionActions.login({
+      await dispatch(sessionActions.login({
         "credential": "Demo-lition",
         "password": "password"
       }));

@@ -97,7 +97,7 @@ function CreateSpot() {
 
         if (response && response.errors) {
             validationErrors.address = response.errors;
-            setErrors(validationErrors)
+            setErrors(validationErrors);
           return;
         }
       

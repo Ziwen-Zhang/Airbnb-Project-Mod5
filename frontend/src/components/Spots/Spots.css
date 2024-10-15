@@ -2,8 +2,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 16px; 
-    list-style-type: none;
-    padding: 0;
   }
   
   .eachSpot {
@@ -16,29 +14,16 @@
     }
   }
   
-
-  
   .spotInfo {
     padding: 8px 0;
     font-size: 1rem; 
   }
   
-
-  /* .spotDetail {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-    margin: 20px;
-  } */
-  
   .imageArea {
     display: grid;
     grid-template-columns: 1fr 1fr
   }
-  
-  /* .largeImageArea {
 
-  } */
 
   .spotLargeImage {
     width: 100%;

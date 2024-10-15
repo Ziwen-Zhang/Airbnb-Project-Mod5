@@ -1,6 +1,4 @@
-import { act } from 'react';
 import { csrfFetch } from './csrf';
-import { restoreCSRF } from './csrf';
 
 const GET_SPOTS = 'spots/GET_SPOTS';
 const GET_SPOT_DETAIL = 'spots/GET_SPOT_DETAIL';
@@ -47,14 +45,10 @@ export const getSpotDetail = (spotId) => async (dispatch) => {
 };
 
 export const addSpotThunk = (spotData) => async (dispatch) => {
-    const resCSRF = await restoreCSRF();
-    const data = await resCSRF.json();
-    const csrfToken = data['XSRF-Token'];
-    const res = await fetch("/api/spots", {
+    const res = await csrfFetch("/api/spots", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "XSRF-TOKEN": csrfToken,
       },
       body: JSON.stringify(spotData),
     });
@@ -70,16 +64,11 @@ export const addSpotThunk = (spotData) => async (dispatch) => {
     }
   }
 
-export const addSpotImageThunk = (spotId, image) => async (dispatch) => {
-    const resCSRF = await restoreCSRF();
-    const data = await resCSRF.json();
-    const csrfToken = data['XSRF-Token'];
-  
-    const res = await fetch(`/api/spots/${spotId}/images`, {
+export const addSpotImageThunk = (spotId, image) => async () => {
+    const res = await csrfFetch(`/api/spots/${spotId}/images`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "XSRF-TOKEN": csrfToken,
       },
       body: JSON.stringify(image),
     });
