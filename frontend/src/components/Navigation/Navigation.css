@@ -58,5 +58,17 @@
 
 .profile-button:hover {
   border-color: lightcoral; 
-  color: lightcoral; /* 鼠标悬停时改变图标颜色 */
+  color: lightcoral;
+}
+
+.createNewSpotText{
+  color: seagreen;
+  font-weight: bold;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.errorMessage{
+  color: lightcoral;
 }

@@ -6,10 +6,16 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faBars} from '@fortawesome/fontawesome-free-solid'
+import { useNavigate } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const redirectingNew = () => {
+    navigate(`/spots/new`)
+  };
+  
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -41,10 +47,10 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-
+  
   return (
     <div className='upperRightMenu'>
-      <p>Create a new spot</p>
+      {user && (<p className='createNewSpotText' onClick={redirectingNew}>Create a new spot</p>)}
       <button onClick={toggleMenu} className="profile-button">
         <FontAwesomeIcon icon="fa-solid fa-bars" />
         <FaUserCircle />

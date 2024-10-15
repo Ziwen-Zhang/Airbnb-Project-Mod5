@@ -1,8 +1,10 @@
+import { act } from 'react';
 import { csrfFetch } from './csrf';
+import { restoreCSRF } from './csrf';
 
 const GET_SPOTS = 'spots/GET_SPOTS';
 const GET_SPOT_DETAIL = 'spots/GET_SPOT_DETAIL';
-const CREATE_SPOT = 'spots/CREATE_SPOT';
+const ADD_SPOT = 'spots/ADD_SPOT';
 
 const getAllSpots = (spots) => {
     return {
@@ -20,12 +22,14 @@ const getSpotDetailAction = (spot) => {
 };
 
 
-const CreateSpot = (spotInfo) =>{
+const addSpot = (spotData) =>{
     return {
-        type: CREATE_SPOT,
-        payload:spotInfo
+        type: ADD_SPOT,
+        payload: spotData
     }
 }
+
+
 
 export const getSpots = () => async (dispatch) => {
     const response = await csrfFetch('/api/spots');
@@ -41,6 +45,55 @@ export const getSpotDetail = (spotId) => async (dispatch) => {
     dispatch(getSpotDetailAction(data));
     return response;
 };
+
+export const addSpotThunk = (spotData) => async (dispatch) => {
+    const resCSRF = await restoreCSRF();
+    const data = await resCSRF.json();
+    const csrfToken = data['XSRF-Token'];
+    const res = await fetch("/api/spots", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "XSRF-TOKEN": csrfToken,
+      },
+      body: JSON.stringify(spotData),
+    });
+  
+    if (res.ok) {
+      const newSpot = await res.json();
+      dispatch(addSpot(newSpot));
+      return newSpot;
+    } else {
+      const errors = await res.json();
+    //   console.log(errors.errors)
+      return errors;
+    }
+  }
+
+export const addSpotImageThunk = (spotId, image) => async (dispatch) => {
+    const resCSRF = await restoreCSRF();
+    const data = await resCSRF.json();
+    const csrfToken = data['XSRF-Token'];
+  
+    const res = await fetch(`/api/spots/${spotId}/images`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "XSRF-TOKEN": csrfToken,
+      },
+      body: JSON.stringify(image),
+    });
+  
+    if (res.ok) {
+      const newImage = await res.json();
+      return newImage;
+    } else {
+      const errors = await res.json();
+      return errors;
+    }
+  };
+  
+
 
 
 const initialState = { allSpots: {}, targetSpot: null };
@@ -60,12 +113,16 @@ export default function spotsReducer(state = initialState, action) {
                 targetSpot: action.payload,
             };
         }
-        case CREATE_SPOT :{
-            return {
-                ...state,
-                
-            }
-        }
+        case ADD_SPOT: {
+            const newState = {
+              ...state,
+              allSpots: {
+                ...state.allSpots,
+                [action.payload.id]: action.payload,
+              },
+            };
+            return newState;
+          }
         default:
             return state;
     }

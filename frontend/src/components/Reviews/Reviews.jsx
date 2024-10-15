@@ -36,7 +36,6 @@ function Reviews() {
       ) : (
         sortedReviews.map((review) => {
           const createdDate = new Date(review.createdAt);
-          console.log(createdDate)
           const options = { year: 'numeric', month: 'long' };
           const normalDate = createdDate.toLocaleDateString(undefined, options);
           return (
