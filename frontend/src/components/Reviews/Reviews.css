@@ -9,4 +9,24 @@
   .reviewItem p {
     margin: 5px 0;
   }
+
+
+.postReviewForm{
+  width: 400px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.reviewCommentSection{
+  display: grid;
+  grid-template-columns: auto;
+}
+
+
+.starsSection{
+  display: flex;
+  gap: 5px;
+}
+
   

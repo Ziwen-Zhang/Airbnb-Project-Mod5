@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllReviews,getUserReviewsThunk } from "../../store/review";
 import { useParams } from "react-router-dom";
 import './Reviews.css'
+import PostReviewButton from "./PostReviewModalButton";
 
 function Reviews() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function Reviews() {
     <div className="eachReview">
         <h2>reviews</h2>
         {currentUser && !checkReviewedSpot.length && currentUser.id !== spot.ownerId && (
-        <button onClick={() => alert("hi there")}>Post Your Review</button>
+        <PostReviewButton/>
       )}
       {showFirstPostReviewMessage ? (
         <p>Be the first to post a review!</p>

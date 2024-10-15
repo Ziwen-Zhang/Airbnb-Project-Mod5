@@ -1,8 +1,9 @@
 import { csrfFetch } from './csrf';
+import { getSpotDetail } from './spots';
 
 const GET_SPOT_REVIEWS = 'reviews/GET_SPOT_REVIEWS';
 const GET_USER_REVIEWS = 'reviews/GET_USER_REVIEWS'
-const ADD_REVIEW = 'reviews/ADD_REVIEW'
+// const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const CLEAR_USER_REVIEWS = 'reviews/CLEAR_USER_REVIEWS';
 
 export const clearUserReviews = () => ({
@@ -23,12 +24,12 @@ const getUserReviews = (userReviews) => {
     }
 }
 
-const addReview = (reviewData) =>{
-    return {
-        type:ADD_REVIEW,
-        payload:reviewData
-    }
-}
+// const addReview = (reviewData) =>{
+//     return {
+//         type:ADD_REVIEW,
+//         payload:reviewData
+//     }
+// }
 
 
 export const getAllReviews = (spotId) => async (dispatch) => {
@@ -47,6 +48,7 @@ export const getUserReviewsThunk = () => async(dispatch) =>{
 }
 
 export const addReviewThunk = (spotId,review) => async(dispatch) =>{
+    console.log(JSON.stringify(review))
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`,{
         method: "POST",
         headers: {
@@ -57,7 +59,9 @@ export const addReviewThunk = (spotId,review) => async(dispatch) =>{
 
       if (res.ok) {
         const newReview = await res.json();
-        dispatch(addReview(newReview));
+        await dispatch(getAllReviews(spotId));
+        await dispatch(getUserReviewsThunk());
+        await dispatch(getSpotDetail(spotId));
         return newReview;
     } else {
         const errors = await res.json();
@@ -87,18 +91,14 @@ export default function reviewReducer(state = initialState, action) {
                     }, {}),
                 },
             };
-            case ADD_REVIEW:
-                return { 
-                    ...state, 
-                    allReviews: {
-                        ...state.allReviews,
-                        [action.payload.id]: action.payload
-                    },
-                    currentUserReviews: {
-                        ...state.currentUserReviews,
-                        [action.payload.id]: action.payload
-                    }
-                };
+            // case ADD_REVIEW:
+            //     return {
+            //         ...state, 
+            //         currentUserReviews: {
+            //             ...state.currentUserReviews,
+            //             [action.payload.id]: action.payload
+            //         }
+            //     };
             case CLEAR_USER_REVIEWS:
                 return {
                     ...state,

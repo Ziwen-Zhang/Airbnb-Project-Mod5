@@ -6,6 +6,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { clearUserReviews } from '../../store/review';
 
@@ -54,7 +55,7 @@ function ProfileButton({ user }) {
     <div className='upperRightMenu'>
       {user && (<p className='createNewSpotText' onClick={redirectingNew}>Create a new spot</p>)}
       <button onClick={toggleMenu} className="profile-button">
-        <FontAwesomeIcon icon="fa-solid fa-bars" />
+      <FontAwesomeIcon icon={faBars}/>
         <FaUserCircle />
       </button>
       <div className={ulClassName} ref={ulRef}>
