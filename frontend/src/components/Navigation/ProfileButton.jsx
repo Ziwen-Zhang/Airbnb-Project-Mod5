@@ -7,6 +7,7 @@ import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
+import { clearUserReviews } from '../../store/review';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    dispatch(clearUserReviews());
     closeMenu();
   };
 

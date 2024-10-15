@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
-// import Spots from './components/Spots/Spots';
 import { Spots, SpotDetail, CreateSpot } from './components/Spots';
 
 function Layout() {

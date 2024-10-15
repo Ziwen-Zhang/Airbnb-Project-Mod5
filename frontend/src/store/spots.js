@@ -85,12 +85,12 @@ export const addSpotImageThunk = (spotId, image) => async () => {
 
 
 
-const initialState = { allSpots: {}, targetSpot: null };
+const initialState = { allSpots: {}, targetSpot: {} };
 
 export default function spotsReducer(state = initialState, action) {
     switch (action.type) {
         case GET_SPOTS: {
-            const newState = { ...state, allSpots: { ...state.allSpots } };
+            const newState = { ...state};
             action.payload.forEach((spot) => {
                 newState.allSpots[spot.id] = spot;
             });

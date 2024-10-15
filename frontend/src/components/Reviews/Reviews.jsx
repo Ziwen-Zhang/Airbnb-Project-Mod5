@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllReviews } from "../../store/review";
+import { getAllReviews,getUserReviewsThunk } from "../../store/review";
 import { useParams } from "react-router-dom";
 import './Reviews.css'
 
@@ -11,27 +11,41 @@ function Reviews() {
   const reviews = useSelector((state) => state.reviews.allReviews);
   const currentUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.targetSpot);
+  const userReviews = useSelector((state) => state.reviews.currentUserReviews);
+
+  const checkReviewedSpot = Object.values(userReviews).filter((e) => {
+    return e.spotId == spotId
+  })
+
 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getAllReviews(spotId))
-      .then(() => setIsLoading(false))
-      .catch(() => setIsLoading(false));
-  }, [dispatch, spotId]);
+    const fetchData = async () => {
+      setIsLoading(true);
+      await dispatch(getAllReviews(spotId));
+      if (currentUser) {
+        await dispatch(getUserReviewsThunk());
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [dispatch, spotId, currentUser]);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   const sortedReviews = Object.values(reviews).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-  const showPostReviewMessage = sortedReviews.length === 0 && currentUser && currentUser.id !== spot.ownerId;
+  const showFirstPostReviewMessage = sortedReviews.length === 0 && currentUser && currentUser.id !== spot.ownerId;
 
   return (
     <div className="eachReview">
         <h2>reviews</h2>
-      {showPostReviewMessage ? (
+        {currentUser && !checkReviewedSpot.length && currentUser.id !== spot.ownerId && (
+        <button onClick={() => alert("hi there")}>Post Your Review</button>
+      )}
+      {showFirstPostReviewMessage ? (
         <p>Be the first to post a review!</p>
       ) : (
         sortedReviews.map((review) => {
