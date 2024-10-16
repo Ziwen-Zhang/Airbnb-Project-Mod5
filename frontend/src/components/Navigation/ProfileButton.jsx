@@ -17,7 +17,9 @@ function ProfileButton({ user }) {
   const redirectingNew = () => {
     navigate(`/spots/new`)
   };
-  
+  const redirectingManage = ()=>{
+    navigate('/spots/current')
+  }
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -46,6 +48,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     dispatch(clearUserReviews());
+    navigate('/')
     closeMenu();
   };
 
@@ -64,6 +67,7 @@ function ProfileButton({ user }) {
             <div>{user.username}</div>
             <div>Hello, {user.firstName}</div>
             <div>{user.email}</div>
+            <div onClick={redirectingManage}>Manage Spot</div>
             <div>
               <button onClick={logout}>Log Out</button>
             </div>

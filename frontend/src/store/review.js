@@ -3,7 +3,6 @@ import { getSpotDetail } from './spots';
 
 const GET_SPOT_REVIEWS = 'reviews/GET_SPOT_REVIEWS';
 const GET_USER_REVIEWS = 'reviews/GET_USER_REVIEWS'
-// const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const CLEAR_USER_REVIEWS = 'reviews/CLEAR_USER_REVIEWS';
 
 export const clearUserReviews = () => ({
@@ -24,12 +23,6 @@ const getUserReviews = (userReviews) => {
     }
 }
 
-// const addReview = (reviewData) =>{
-//     return {
-//         type:ADD_REVIEW,
-//         payload:reviewData
-//     }
-// }
 
 
 export const getAllReviews = (spotId) => async (dispatch) => {

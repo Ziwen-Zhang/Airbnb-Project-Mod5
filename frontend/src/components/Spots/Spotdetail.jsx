@@ -5,7 +5,7 @@ import './Spots.css';
 import { useParams } from "react-router-dom";
 import  {StarAndRating}  from "../Reviews";
 import {Reviews} from "../Reviews";
-
+import { getSpots } from "../../store/spots";
 function SpotDetail() {
   const dispatch = useDispatch();
   const { spotId } = useParams()
@@ -13,7 +13,8 @@ function SpotDetail() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getSpotDetail(spotId))
+    dispatch(getSpotDetail(spotId));
+    dispatch(getSpots())
     .then(() => setIsLoading(false))
     .catch(() => setIsLoading(false))
   }, [dispatch,spotId]);
