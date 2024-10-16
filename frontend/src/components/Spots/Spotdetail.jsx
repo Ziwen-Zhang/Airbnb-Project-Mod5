@@ -27,7 +27,8 @@ function SpotDetail() {
     return <p>Spot not found.</p>;
   }
 
-const allImages = spot.SpotImages
+  const allImages = spot.SpotImages;
+  
 
   return (
     <div className="spotDetail">
@@ -39,10 +40,9 @@ const allImages = spot.SpotImages
           <img src={allImages[0].url} alt={spot.name} className="spotLargeImage" />
         </div>
         <div className="smallImageArea">
-          <img src={allImages[0].url} alt={spot.name} className="spotSmallImage" />
-          <img src={allImages[0].url} alt={spot.name} className="spotSmallImage" />
-          <img src={allImages[0].url} alt={spot.name} className="spotSmallImage" />
-          <img src={allImages[0].url} alt={spot.name} className="spotSmallImage" />
+        {allImages.slice(1, 5).map((image, index) => (
+          <img key={index} src={image.url} alt={spot.name} className="spotSmallImage" />
+        ))}
         </div>
       </div>
 

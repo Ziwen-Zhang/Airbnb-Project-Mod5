@@ -12,31 +12,51 @@ module.exports = {
     await SpotImage.bulkCreate([
       {
         spotId:1,
-        url:'testUrl',
+        url:'/preview.png',
         preview:true
       },
       {
         spotId:2,
-        url:'testUrl1',
+        url:'/preview.png',
         preview:true
       },
       {
         spotId:3,
-        url:'testUrl',
+        url:'/preview.png',
         preview:true
       },      {
         spotId:4,
-        url:'testUrl',
+        url:'/preview.png',
         preview:true
       },      {
         spotId:5,
-        url:'testUrl',
+        url:'/preview.png',
         preview:true
       },{
         spotId:6,
-        url:'testUrl',
+        url:'/preview.png',
         preview:true
-      }
+      },
+
+      { spotId: 1, url: '/detail1.png', preview: false },
+      { spotId: 1, url: '/detail2.png', preview: false },
+      { spotId: 1, url: '/detail3.png', preview: false },
+      { spotId: 1, url: '/detail4.png', preview: false },
+
+      { spotId: 2, url: '/detail1.png', preview: false },
+      { spotId: 2, url: '/detail2.png', preview: false },
+      { spotId: 2, url: '/detail3.png', preview: false },
+      { spotId: 2, url: '/detail4.png', preview: false },
+
+      { spotId: 3, url: '/detail1.png', preview: false },
+      { spotId: 3, url: '/detail2.png', preview: false },
+      { spotId: 3, url: '/detail3.png', preview: false },
+      { spotId: 3, url: '/detail4.png', preview: false },
+
+      { spotId: 4, url: '/detail1.png', preview: false },
+      { spotId: 4, url: '/detail2.png', preview: false },
+      { spotId: 4, url: '/detail3.png', preview: false },
+      { spotId: 4, url: '/detail4.png', preview: false },
     ])
   },
 
@@ -44,7 +64,7 @@ module.exports = {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1,2,3,4,5] }
+      spotId: { [Op.in]: [1,2,3,4,5,6] }
     }, {});
   }
 };
