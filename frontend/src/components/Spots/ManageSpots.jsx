@@ -9,9 +9,7 @@ function ManageSpots() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userOwnedSpots = useSelector((state) => state.spots.spotsOwnedByCurrentUser);
-
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -40,7 +38,7 @@ function ManageSpots() {
       <div className="title">
         <h1>Manage Your Spots</h1>
       </div>
-      {userOwnedSpots.length === 0 ? (
+      {!Object.values(userOwnedSpots).length ? (
         <div className="noSpots">
           <p>You have not posted any spots yet.</p>
           <button onClick={redirectingNew}>Create a New Spot</button>

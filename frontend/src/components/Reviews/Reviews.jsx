@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllReviews,getUserReviewsThunk } from "../../store/review";
+import { getAllReviews, getUserReviewsThunk } from "../../store/review";
 import { useParams } from "react-router-dom";
-import './Reviews.css'
+import './Reviews.css';
 import { getSpotDetail } from "../../store/spots";
 import PostReviewButton from "./PostReviewModalButton";
 import DeleteReviewButton from "./DeleteReviewButton";
@@ -16,23 +16,22 @@ function Reviews() {
   const spot = useSelector((state) => state.spots.targetSpot);
   const userReviews = useSelector((state) => state.reviews.currentUserReviews);
 
-  const checkReviewedSpot = Object.values(userReviews).filter((e) => {
-    return e.spotId == spotId
-  })
-
+  const checkReviewedSpot = currentUser ? Object.values(userReviews).filter((e) => e.spotId == spotId): [];
 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      await dispatch(getSpotDetail(spotId))
+      await dispatch(getSpotDetail(spotId));
       await dispatch(getAllReviews(spotId));
-      await dispatch(getUserReviewsThunk());
+      if (currentUser) {
+        await dispatch(getUserReviewsThunk());
+      }
       setIsLoading(false);
     };
     fetchData();
-  }, [dispatch, spotId]);
+  }, [dispatch, spotId, currentUser]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -43,10 +42,8 @@ function Reviews() {
 
   return (
     <div className="eachReview">
-        <h2>reviews</h2>
-        {currentUser && !checkReviewedSpot.length && currentUser.id !== spot.ownerId && (
-        <PostReviewButton/>
-      )}
+      <h2>Reviews</h2>
+      {currentUser && !checkReviewedSpot.length && currentUser.id !== spot.ownerId && ( <PostReviewButton />)}
       {showFirstPostReviewMessage ? (
         <p>Be the first to post a review!</p>
       ) : (
@@ -56,8 +53,10 @@ function Reviews() {
           const normalDate = createdDate.toLocaleDateString(undefined, options);
           return (
             <div key={review.id} className="reviewItem">
-              {review.userId == currentUser.id ? <DeleteReviewButton reviewId={review.id} spotId={spotId}/>: "" }
-              <p>{review.User.firstName}</p>
+              {currentUser && currentUser.id === review.userId ? (
+                <DeleteReviewButton reviewId={review.id} spotId={spotId} />
+              ) : ("")}
+              <p>{review.User?.firstName || 'Anonymous'}</p>
               <p>{normalDate}</p>
               <p>{review.review}</p>
             </div>
