@@ -5,9 +5,21 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars} from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { clearUserReviews } from '../../store/review';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const redirectingNew = () => {
+    navigate(`/spots/new`)
+  };
+  const redirectingManage = ()=>{
+    navigate('/spots/current')
+  }
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -35,42 +47,47 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    dispatch(clearUserReviews());
+    navigate('/')
     closeMenu();
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-
+  
   return (
-    <>
-      <button onClick={toggleMenu}>
+    <div className='upperRightMenu'>
+      {user && (<p className='createNewSpotText' onClick={redirectingNew}>Create a new spot</p>)}
+      <button onClick={toggleMenu} className="profile-button">
+      <FontAwesomeIcon icon={faBars}/>
         <FaUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
+            <div>{user.username}</div>
+            <div>Hello, {user.firstName}</div>
+            <div>{user.email}</div>
+            <div onClick={redirectingManage}>Manage Spot</div>
+            <div>
               <button onClick={logout}>Log Out</button>
-            </li>
+            </div>
           </>
         ) : (
           <>
-            <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
             <OpenModalMenuItem
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
           </>
         )}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 }
 
