@@ -108,7 +108,7 @@ function UpdateSpotForm() {
   };
 
   return (
-    <div className="updateSpotForm">
+    <div className="newSpotForm">
       <div className="intro">
         <h1>Update Your Spot</h1>
         <h2>Make changes to your listing below.</h2>

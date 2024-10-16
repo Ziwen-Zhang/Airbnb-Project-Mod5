@@ -45,71 +45,69 @@ function SignupFormModal() {
   const disableSignUpButton = !email || username.length<4 || !firstName || !lastName || password.length<6 || !confirmPassword
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <h1 className='SignUpText'>Sign Up</h1>
+      <form className='signUpForm'onSubmit={handleSubmit}>
+        <label className='formTitle'>
           Email
-          <input
+          <input className='textBox'
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
+        {errors.email && <p className='errorMessage'>{errors.email}</p>}
+        <label className='formTitle'>
           Username
-          <input
+          <input className='textBox'
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
+        {errors.username && <p className='errorMessage'>{errors.username}</p>}
+        <label className='formTitle'>
           First Name
-          <input
+          <input className='textBox'
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
-        <label>
+        {errors.firstName && <p className='errorMessage'>{errors.firstName}</p>}
+        <label  className='formTitle'>
           Last Name
-          <input
+          <input className='textBox'
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
-        <label>
+        {errors.lastName && <p className='errorMessage'>{errors.lastName}</p>}
+        <label  className='formTitle'>
           Password
-          <input
+          <input className='textBox'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
+        {errors.password && <p className='errorMessage'>{errors.password}</p>}
+        <label  className='formTitle'>
           Confirm Password
-          <input
+          <input className='textBox'
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
-        <button type="submit" disabled={disableSignUpButton}>Sign Up</button>
+        {errors.confirmPassword && (<p className='errorMessage'>{errors.confirmPassword}</p>)}
+        <button className='submitButton'type="submit" disabled={disableSignUpButton}>Sign Up</button>
       </form>
     </>
   );

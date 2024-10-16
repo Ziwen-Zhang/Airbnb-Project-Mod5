@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons'; // 使用空星图标
-import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'; // 使用实星图标
-import { addReviewThunk } from "../../store/review"; // 引入你的 thunk
+import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'; 
+import { addReviewThunk } from "../../store/review";
+import './PostReviewFormModal.css';
 
 function PostReviewFormModal() {
     const dispatch = useDispatch();
@@ -47,9 +48,9 @@ function PostReviewFormModal() {
         <>
         <form className= 'postReviewForm'onSubmit={handleSubmit}>
             <label className="reviewCommentSection">
-            <span>How was your stay?</span>
+            <span className="reviewTitle">How was your stay?</span>
             {errors.length > 0 && (<span>{errors}</span>)}
-            <input
+            <input className="reviewInputBox"
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
                 placeholder="Leave your review here..."
@@ -79,7 +80,7 @@ function PostReviewFormModal() {
             </div>
             
             <div className="submitButtonSection">
-            <button type="submit" disabled={isSubmitDisabled}> Submit Your Review </button>
+            <button className='reviewSubmitButton'type="submit" disabled={isSubmitDisabled}> Submit Your Review </button>
             </div>
         </form>
         </>

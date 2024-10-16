@@ -29,14 +29,20 @@ function Spots() {
     <div>
       <div className="spotList">
         {Object.values(spots).map((spot) => (
-          <div key={spot.id} className="eachSpot" title={spot.name} onClick={()=>redirecting(spot.id)}>
-            <img src={spot.previewImage} alt={spot.name} className="spotThumbnail"/>
-            <div className="spotInfo">
+          <div key={spot.id} className="eachSpot">
+          <div key={spot.id} className="images" onClick={()=>redirecting(spot.id)}>
+          <img src={spot.previewImage} alt={spot.name} className="spotThumbnail"/>
+          </div>
+
+            <div className="locationAndRating">
                 <p>{spot.city}, {spot.state}</p>
                 <StarAndRating avgRating={spot.avgRating}/>
-                <p>{spot.price}/night</p>
+            </div>
+            <div className="priceSection">
+                <p>$ {spot.price}/night</p>
             </div>
           </div>
+
         ))}
       </div>
     </div>

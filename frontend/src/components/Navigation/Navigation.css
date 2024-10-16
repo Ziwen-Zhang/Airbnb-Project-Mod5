@@ -12,6 +12,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
+  border-bottom: 1px solid lightgray;
 }
 
 .logo {
@@ -44,7 +45,6 @@
 }
 
 .profile-button {
-  background: white;
   border: 2px solid black; 
   border-radius: 25%;
   cursor: pointer;

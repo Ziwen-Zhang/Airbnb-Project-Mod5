@@ -6,7 +6,7 @@ import './Reviews.css';
 import { getSpotDetail } from "../../store/spots";
 import PostReviewButton from "./PostReviewModalButton";
 import DeleteReviewButton from "./DeleteReviewButton";
-
+import StarAndRating from "./StarAndRating";
 function Reviews() {
   const dispatch = useDispatch();
   const { spotId } = useParams();
@@ -42,7 +42,10 @@ function Reviews() {
 
   return (
     <div className="eachReview">
-      <h2>Reviews</h2>
+      <div className="starAndCountSection">
+      <StarAndRating avgRating={spot.avgStarRating} />
+      <span>{spot.numReviews? `· ${spot.numReviews} Review${spot.numReviews === 1 ? '' : 's'}`: ''}</span>
+      </div>
       {currentUser && !checkReviewedSpot.length && currentUser.id !== spot.ownerId && ( <PostReviewButton />)}
       {showFirstPostReviewMessage ? (
         <p>Be the first to post a review!</p>
@@ -56,9 +59,9 @@ function Reviews() {
               {currentUser && currentUser.id === review.userId ? (
                 <DeleteReviewButton reviewId={review.id} spotId={spotId} />
               ) : ("")}
-              <p>{review.User?.firstName || 'Anonymous'}</p>
-              <p>{normalDate}</p>
-              <p>{review.review}</p>
+              <h3 className="userFirstName">{review.User.firstName}</h3>
+              <p className="reviewDate">{normalDate}</p>
+              <p className="reviewText">{review.review}</p>
             </div>
           );
         })

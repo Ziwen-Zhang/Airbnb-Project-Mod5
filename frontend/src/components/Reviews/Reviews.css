@@ -1,14 +1,29 @@
 .reviewSection {
     margin-top: 20px;
-  }
+}
   
-  .reviewItem {
+.reviewItem {
     padding: 10px 0;
-  }
+    border-bottom: 1px solid #ddd;
+}
   
-  .reviewItem p {
-    margin: 5px 0;
-  }
+.userFirstName {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+
+.reviewDate {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 10px;
+}
+
+.reviewText {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
 
 
 .postReviewForm{

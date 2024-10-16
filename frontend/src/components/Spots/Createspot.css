@@ -82,3 +82,17 @@
   .createSpotButton:hover {
     background-color: rgb(236, 152, 152);
   }
+
+  .updateSpotButton{
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: lightcoral;
+    color: white;
+    border: 1px solid lightcoral;
+    border-radius: 5px;
+    cursor: pointer;
+      &:hover {
+      background-color: rgb(236, 152, 152);
+    }
+  }
+

@@ -1,0 +1,66 @@
+.logInform {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+.logInText {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+.username, .password {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+.usernameBox, .passwordBox {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+.submitButton {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: lightcoral;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+.submitButton:disabled {
+    background-color: #c0c0c0; /* Grey background when disabled */
+    cursor: not-allowed;
+  }
+  
+.submitButton:hover:enabled {
+    background-color: lightpink;
+  }
+  
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  
+.demoButton {
+    display: grid;
+    justify-content: center;
+    background-color: white;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+  
+.demoButton:hover {
+    color: navy;
+}
+  

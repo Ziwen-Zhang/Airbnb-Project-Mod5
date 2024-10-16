@@ -32,6 +32,10 @@ module.exports = {
         spotId:5,
         url:'testUrl',
         preview:true
+      },{
+        spotId:6,
+        url:'testUrl',
+        preview:true
       }
     ])
   },

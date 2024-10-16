@@ -1,0 +1,50 @@
+.signUpForm {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+.SignUpText {
+    font-size: 24px;
+    text-align: center;
+}
+
+.formTitle {
+    font-size: 14px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.textBox {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: lightcoral;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submitButton:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+}
+
+.submitButton:hover:enabled {
+    background-color: lightpink;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+}

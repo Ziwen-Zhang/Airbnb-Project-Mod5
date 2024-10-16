@@ -67,7 +67,7 @@ function ProfileButton({ user }) {
             <div>{user.username}</div>
             <div>Hello, {user.firstName}</div>
             <div>{user.email}</div>
-            <div onClick={redirectingManage}>Manage Spot</div>
+            <button onClick={redirectingManage}>Manage Spot</button>
             <div>
               <button onClick={logout}>Log Out</button>
             </div>

@@ -1,0 +1,49 @@
+.modalSection {
+    text-align: center;
+    padding: 20px;
+    width: 400px;
+}
+
+.deleteTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.deleteMessage {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.deleteButtons {
+    display: grid;
+    gap: 10px;
+}
+
+.delete-button {
+    background-color: lightcoral;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: red;
+}
+
+.cancel-button {
+    background-color: gray;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.cancel-button:hover {
+    background-color: darkgray;
+}
