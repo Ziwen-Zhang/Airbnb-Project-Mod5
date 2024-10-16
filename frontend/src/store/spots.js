@@ -125,7 +125,6 @@ export const deleteSpotThunk = (spotId) => async(dispatch)=>{
 export const getAllSpotsOwnedByUser = () =>async(dispatch)=>{
   const res = await csrfFetch('/api/spots/current');
   const data = await res.json();
-  // console.log(data)
   dispatch(getOwnedSpotsAction(data.Spots));
   return res;
 }

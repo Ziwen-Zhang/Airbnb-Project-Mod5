@@ -4,7 +4,6 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useDispatch } from 'react-redux';
 import { clearSpotReviews } from '../../store/review';
-import airdnd from '../../../public/favicon.ico'
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -16,7 +15,7 @@ function Navigation({ isLoaded }) {
         dispatch(clearSpotReviews())
         navigate('/')
         }}>
-        <img src={airdnd} alt="logo" className='logo'/>
+        <img src="/favicon.ico" alt="logo" className='logo'/>
         <span className="logo-text">airdnd</span>
       </div>
       {isLoaded && (

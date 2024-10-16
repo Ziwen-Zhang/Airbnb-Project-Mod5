@@ -45,7 +45,6 @@ export const getUserReviewsThunk = () => async(dispatch) =>{
 }
 
 export const addReviewThunk = (spotId,review) => async(dispatch) =>{
-    console.log(JSON.stringify(review))
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`,{
         method: "POST",
         headers: {
