@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllReviews,getUserReviewsThunk } from "../../store/review";
 import { useParams } from "react-router-dom";
 import './Reviews.css'
+import { getSpotDetail } from "../../store/spots";
 import PostReviewButton from "./PostReviewModalButton";
+import DeleteReviewButton from "./DeleteReviewButton";
 
 function Reviews() {
   const dispatch = useDispatch();
@@ -24,14 +26,13 @@ function Reviews() {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      await dispatch(getSpotDetail(spotId))
       await dispatch(getAllReviews(spotId));
-      if (currentUser) {
-        await dispatch(getUserReviewsThunk());
-      }
+      await dispatch(getUserReviewsThunk());
       setIsLoading(false);
     };
     fetchData();
-  }, [dispatch, spotId, currentUser]);
+  }, [dispatch, spotId]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -55,6 +56,7 @@ function Reviews() {
           const normalDate = createdDate.toLocaleDateString(undefined, options);
           return (
             <div key={review.id} className="reviewItem">
+              {review.userId == currentUser.id ? <DeleteReviewButton reviewId={review.id} spotId={spotId}/>: "" }
               <p>{review.User.firstName}</p>
               <p>{normalDate}</p>
               <p>{review.review}</p>

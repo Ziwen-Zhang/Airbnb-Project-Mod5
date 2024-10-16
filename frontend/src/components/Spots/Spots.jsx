@@ -4,6 +4,8 @@ import { getSpots } from "../../store/spots";
 import './Spots.css';
 import { useNavigate } from "react-router-dom";
 import { StarAndRating } from "../Reviews";
+import { getUserReviewsThunk } from "../../store/review";
+import { getAllSpotsOwnedByUser } from "../../store/spots";
 
 function Spots() {
   const dispatch = useDispatch();
@@ -12,7 +14,9 @@ function Spots() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getSpots())
+    dispatch(getSpots()),
+    dispatch(getUserReviewsThunk()),
+    dispatch(getAllSpotsOwnedByUser())
       .then(() => setIsLoading(false));
   }, [dispatch]);
 

@@ -1,15 +1,15 @@
-import { deleteSpotThunk } from "../../store/spots"
+import { deleteReviewThunk } from "../../store/review"
 import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
 
-function DeleteSpotModal({spotId}){
+function DeleteReviewModal ({reviewId,spotId}){
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const handleCancel = () => {
         closeModal()
     }
     const handleDelete = async () => {
-        await dispatch(deleteSpotThunk(spotId));
+        await dispatch(deleteReviewThunk(reviewId,spotId));
         closeModal();
     };
 
@@ -17,13 +17,13 @@ function DeleteSpotModal({spotId}){
     return (
         <div className="modalSection">
           <h2>Confirm Delete</h2>
-          <p>Are you sure you want to remove this spot from the listings?</p>
+          <p>Are you sure you want to delete this review?</p>
           <div className="buttons">
             <button className="delete-button" onClick={handleDelete}>
-              Yes (Delete Spot)
+              Yes (Delete Review)
             </button>
             <button className="cancel-button" onClick={handleCancel} >
-              No (Keep Spot)
+              No (Keep Review)
             </button>
           </div>
         </div>
@@ -32,4 +32,4 @@ function DeleteSpotModal({spotId}){
     )
 }
 
-export default DeleteSpotModal
+export default DeleteReviewModal
