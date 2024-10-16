@@ -12,8 +12,11 @@ function Spots() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getSpots())
-      .then(() => setIsLoading(false));
+    const fetchData = async () => {
+      await dispatch(getSpots()); 
+      setIsLoading(false); 
+    };
+    fetchData();
   }, [dispatch]);
 
   if (isLoading) {

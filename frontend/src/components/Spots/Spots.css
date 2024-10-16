@@ -62,8 +62,8 @@
 }
 .spotLargeImage {
   width: 100%;
-  height: 100%;
-  border: 1px solid black;
+  height: 502px;
+  border: 1px solid gray;
 }
 
 .smallImageArea {
@@ -72,9 +72,9 @@
 }
 
 .spotSmallImage {
-  width: 100%;
-  height: 100%;
-  border: 1px solid black;
+  width: 250px;
+  height: 250px;
+  border: 1px solid gray;
 }
 
 .spotInfoArea {

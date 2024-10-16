@@ -6,7 +6,10 @@
   cursor: pointer;
   background-color: lightcoral;
 }
-
+.logo{
+  width: 20px;
+  height: 20px;
+}
 .navigation {
   display: flex;
   align-items: center;

@@ -13,18 +13,17 @@ function SpotDetail() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getSpotDetail(spotId));
-    dispatch(getSpots())
-    .then(() => setIsLoading(false))
-    .catch(() => setIsLoading(false))
-  }, [dispatch,spotId]);
+    const fetchData = async () => {
+      await dispatch(getSpotDetail(spotId));
+      await dispatch(getSpots()); 
+      setIsLoading(false); 
+    };
+    fetchData();
+  }, [dispatch, spotId]);
+  
 
   if (isLoading) {
     return <p>Loading...</p>;
-  }
-
-  if (!spot) {
-    return <p>Spot not found.</p>;
   }
 
   const allImages = spot.SpotImages;
