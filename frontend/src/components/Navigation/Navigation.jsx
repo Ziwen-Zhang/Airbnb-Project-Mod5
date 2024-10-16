@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
         navigate('/')
         }}>
         <img src="/favicon.ico" alt="logo" className='logo'/>
-        <span className="logo-text">airdnd</span>
+        <span className="logo-text">Airdnd</span>
       </div>
       {isLoaded && (
         <div>
