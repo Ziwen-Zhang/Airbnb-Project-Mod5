@@ -78,7 +78,7 @@ router.post('/', async (req, res, next) => {
     // Error Response: Invalid credentials------------------------------------------------
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
       return res.status(401).json({
-        message:"Invalid credentials"
+        message:"The provided credentials were invalid"
       })
     }
     // Ziwen ^^^ -------------------------------------------------------------------------

@@ -1,0 +1,84 @@
+.newSpotForm {
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  .intro h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  
+  .intro h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+  }
+  
+  .intro h3 {
+    font-size: 1em;
+    margin-bottom: 1.5em;
+  }
+  
+  .addressForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  .addressForm label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+
+
+  .cityState{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px
+  }
+
+  .latLong {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .priceLabel {
+    display:grid;
+    grid-template-columns: 1fr 50fr;
+    align-items: center; 
+  }
+  
+  .priceLabel input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .dollarSign {
+    font-size: 1.2em;
+  }
+  
+
+  .createSpotButton {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: lightcoral;
+    color: white;
+    border: 1px solid lightcoral;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .createSpotButton:hover {
+    background-color: rgb(236, 152, 152);
+  }

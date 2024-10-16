@@ -1,22 +1,31 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faAirbnb} from '@fortawesome/free-brands-svg-icons'
+import { useDispatch } from 'react-redux';
+import { clearSpotReviews } from '../../store/review';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
+    <nav className='navigation'>
+      <div className="logo" onClick={() => {
+        dispatch(clearSpotReviews())
+        navigate('/')
+        }}>
+        <FontAwesomeIcon icon={faAirbnb} size="2x" color="red" />
+        <span className="logo-text">airbnb</span>
+      </div>
       {isLoaded && (
-        <li>
+        <div>
           <ProfileButton user={sessionUser} />
-        </li>
+        </div>
       )}
-    </ul>
+    </nav>
   );
 }
 
