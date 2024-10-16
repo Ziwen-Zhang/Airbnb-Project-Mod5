@@ -13,7 +13,7 @@ module.exports = {
       {
         spotId:1,
         url:'testUrl',
-        preview:false
+        preview:true
       },
       {
         spotId:2,
