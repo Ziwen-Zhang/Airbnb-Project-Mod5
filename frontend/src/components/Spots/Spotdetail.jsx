@@ -31,15 +31,15 @@ function SpotDetail() {
 
   return (
     <div className="spotDetail">
-      <h1>{spot.name}</h1>
-      <p>{spot.city}, {spot.state}, {spot.country}</p>
+      <h1 data-testid='spot-name'>{spot.name}</h1>
+      <p data-testid='spot-location'>{spot.city}, {spot.state}, {spot.country}</p>
 
       <div className="imageArea">
-        <div className="largeImageArea">
-          <img src={allImages[0].url} alt={spot.name} className="spotLargeImage" />
+        <div data-testid='spot-large-image' className="largeImageArea">
+          <img src={allImages[0]?.url} alt={spot.name} className="spotLargeImage" />
         </div>
-        <div className="smallImageArea">
-        {allImages.slice(1, 5).map((image, index) => (
+        <div data-testid='spot-small-image' className="smallImageArea">
+        {allImages?.slice(1, 5).map((image, index) => (
           <img key={index} src={image.url} alt={spot.name} className="spotSmallImage" />
         ))}
         </div>
@@ -47,19 +47,19 @@ function SpotDetail() {
 
       <div className="spotInfoArea">
         <div className="descriptionArea">
-          <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-          <p>{spot.description}</p>
+          <h2 data-testid='spot-host'>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+          <p data-testid='spot-description'>{spot.description}</p>
         </div>
 
-        <div className="calloutBox">
+        <div className="calloutBox" data-testid='spot-callout-box'>
           <div className="reviewAndCount">
             <StarAndRating avgRating={spot.avgStarRating} />
             <span>
                 {spot.numReviews? `· ${spot.numReviews} Review${spot.numReviews === 1 ? '' : 's'}`: ''}
             </span>
           </div>
-          <p><strong>${spot.price}</strong> / night</p>
-          <button onClick={() => alert("Feature coming soon")}>Reserve</button>
+          <p data-testid='spot-price'>${spot.price} / night</p>
+          <button data-testid='reserve-button' onClick={() => alert("Feature coming soon")}>Reserve</button>
         </div>
       </div>
       <div className="reviewArea">

@@ -9,14 +9,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { clearUserReviews } from '../../store/review';
-
+import { Link } from 'react-router-dom';
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
-  const redirectingNew = () => {
-    navigate(`/spots/new`)
-  };
+  // const redirectingNew = () => {
+  //   navigate(`/spots/new`)
+  // };
   const redirectingManage = ()=>{
     navigate('/spots/current')
   }
@@ -56,7 +56,7 @@ function ProfileButton({ user }) {
   
   return (
     <div className='upperRightMenu'>
-      {user && (<p className='createNewSpotText' onClick={redirectingNew}>Create a new spot</p>)}
+      {user && (<Link to="/spots/new" className='createNewSpotText'>Create a New Spot</Link>)}
       <button onClick={toggleMenu} className="profile-button" data-testid='user-menu-button'>
       <FontAwesomeIcon icon={faBars}/>
         <FaUserCircle />
@@ -67,7 +67,7 @@ function ProfileButton({ user }) {
             <div>{user.username}</div>
             <div data-testid='Hello, Demo'>Hello, {user.firstName}</div>
             <div data-testid='demo@user.io'>{user.email}</div>
-            <button onClick={redirectingManage}>Manage Spot</button>
+            <button data-testid='manage-spots-link' onClick={redirectingManage}>Manage Spot</button>
             <div>
               <button onClick={logout} data-testid='Log out'>Log Out</button>
             </div>

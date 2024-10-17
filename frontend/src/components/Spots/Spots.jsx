@@ -31,9 +31,12 @@ function Spots() {
   return (
     <div>
       <div className="spotList" data-testid='spots-list'>
-        {Object.values(spots).map((spot) => (
-// {/* <div data-testid='spot-tooltip'> */}
-          <div key={spot.id} className="eachSpot"  title={spot.name} onClick={()=>redirecting(spot.id)} data-testid='spot-tile'  >
+        {Object.values(spots)
+        .slice()
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))        
+        .map((spot) => (
+ <div key={spot.id} data-testid='spot-tile' onClick={()=>redirecting(spot.id)}> 
+          <div key={spot.id} className="eachSpot"  title={spot.name} data-testid='spot-tooltip' >
             <div key={spot.id} className="images">
             <img src={spot.previewImage} alt={spot.name} className="spotThumbnail" data-testid='spot-thumbnail-image'/>
             </div>
@@ -45,7 +48,7 @@ function Spots() {
                   <p data-testid='spot-price'>$ {spot.price}/night</p>
               </div>
           </div>
-// </div> 
+</div> 
         ))}
         
       </div>

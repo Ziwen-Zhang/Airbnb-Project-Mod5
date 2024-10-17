@@ -47,6 +47,26 @@ function SignupFormModal() {
     <>
       <h1 className='SignUpText'>Sign Up</h1>
       <form className='signUpForm'onSubmit={handleSubmit} data-testid='sign-up-form'>
+      <label className='formTitle'>
+          First Name
+          <input className='textBox' data-testid='first-name-input'
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.firstName && <p className='errorMessage' data-testid='first-name-error-message'>{errors.firstName}</p>}
+        <label  className='formTitle'>
+          Last Name
+          <input className='textBox' data-testid='last-name-input'
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.lastName && <p className='errorMessage' data-testid='last-name-error-message'>{errors.lastName}</p>}
         <label className='formTitle'>
           Email
           <input className='textBox' data-testid='email-input'
@@ -67,26 +87,6 @@ function SignupFormModal() {
           />
         </label>
         {errors.username && <p className='errorMessage' data-testid='username-error-message'>{errors.username}</p>}
-        <label className='formTitle'>
-          First Name
-          <input className='textBox' data-testid='first-name-input'
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.firstName && <p className='errorMessage' data-testid='first-name-error-message'>{errors.firstName}</p>}
-        <label  className='formTitle'>
-          Last Name
-          <input className='textBox' data-testid='last-name-input'
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.lastName && <p className='errorMessage' data-testid='last-name-error-message'>{errors.lastName}</p>}
         <label  className='formTitle'>
           Password
           <input className='textBox' data-testid='password-input'

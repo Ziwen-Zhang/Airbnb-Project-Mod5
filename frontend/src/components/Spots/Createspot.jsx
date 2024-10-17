@@ -45,7 +45,7 @@ function CreateSpot() {
         if (!city) validationErrors.city = "City is required";
         if (!state) validationErrors.state = "State is required";
         if (description.length < 30) validationErrors.description = "Description needs 30 or more characters";
-        if (!title) validationErrors.title = "Title is required";
+        if (!title) validationErrors.title = "Name is required";
         if (!price) validationErrors.price = "Price per night is required";
         if (!previewImage) {
             validationErrors.previewImage = "Preview image URL is required";
@@ -60,23 +60,23 @@ function CreateSpot() {
         if (image3 && !isValidImageUrl(image3)) validationErrors.image3 = "Image URL must end in .png, .jpg, or .jpeg";
         if (image4 && !isValidImageUrl(image4)) validationErrors.image4 = "Image URL must end in .png, .jpg, or .jpeg";
 
-        if (!latitude) {
-            validationErrors.latitude = "Latitude is required";
-        } else {
-            const lat = parseFloat(latitude);
-            if (isNaN(lat) || lat < -90 || lat > 90) {
-            validationErrors.latitude = "Latitude must be a number between -90 and 90";
-            }
-        }
+        // if (!latitude) {
+        //     validationErrors.latitude = "Latitude is required";
+        // } else {
+        //     const lat = parseFloat(latitude);
+        //     if (isNaN(lat) || lat < -90 || lat > 90) {
+        //     validationErrors.latitude = "Latitude must be a number between -90 and 90";
+        //     }
+        // }
 
-        if (!longitude) {
-            validationErrors.longitude = "Longitude is required";
-        } else {
-            const lng = parseFloat(longitude);
-            if (isNaN(lng) || lng < -180 || lng > 180) {
-            validationErrors.longitude = "Longitude must be a number between -180 and 180";
-            }
-        }
+        // if (!longitude) {
+        //     validationErrors.longitude = "Longitude is required";
+        // } else {
+        //     const lng = parseFloat(longitude);
+        //     if (isNaN(lng) || lng < -180 || lng > 180) {
+        //     validationErrors.longitude = "Longitude must be a number between -180 and 180";
+        //     }
+        // }
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
@@ -87,8 +87,8 @@ function CreateSpot() {
             address,
             city,
             state,
-            lat:parseFloat(latitude),
-            lng:parseFloat(longitude),
+            // lat:parseFloat(latitude),
+            // lng:parseFloat(longitude),
             description,
             name:title,
             price,
@@ -103,14 +103,9 @@ function CreateSpot() {
       
         const spotId = response.id;
 
-        const images = [
-            { url: previewImage, preview: true },
-            { url: image1, preview: false },
-            { url: image2, preview: false },
-            { url: image3, preview: false },
-            { url: image4, preview: false },
-          ].filter((img) => img.url);
-
+        const images = [previewImage, image1, image2, image3, image4]
+        .filter(e => !e)
+        .map((url, index) => ({ url, preview: index === 0 }))
       
           for (let image of images) {
             await dispatch(addSpotImageThunk(spotId, image));
@@ -125,14 +120,14 @@ function CreateSpot() {
 
 
     return (
-    <div className="newSpotForm">
-      <div className="intro">
-        <h1>Create a new Spot</h1>
-        <h2>Where&apos;s your place located?</h2>
-        <h3>Guests will only get your exact address once they booked a reservation.</h3>
-      </div>
-
+    <div className="newSpotForm" data-testid="create-spot-form">
       <form className="addressForm" onSubmit={handleSubmit}>
+          <h1 data-testid="form-title">Create a New Spot</h1>
+<div data-testid="section-1">
+        <div className="intro">
+          <h2 data-testid="section-1-heading">Where&apos;s your place located?</h2>
+          <h3 data-testid="section-1-caption">Guests will only get your exact address once they booked a reservation.</h3>
+        </div>
         <label>
           Country{errors.country && <p className="errorMessage">{errors.country}</p>}
           <input
@@ -150,7 +145,7 @@ function CreateSpot() {
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            placeholder="Address"
+            placeholder="Street Address"
           />
         </label>
         
@@ -172,7 +167,7 @@ function CreateSpot() {
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
-              placeholder="STATE"
+              placeholder="State"
             />
           </label>
           
@@ -200,10 +195,10 @@ function CreateSpot() {
             />
         </label>
         </div>
-
-
-        <h2>Describe your place to guests</h2>
-        <p>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
+</div>
+<div data-testid="section-2">
+        <h2 data-testid="section-2-heading">Describe your place to guests</h2>
+        <p data-testid="section-2-caption" >Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
         {errors.description && <p className="errorMessage">{errors.description}</p>}
         <label>
           <textarea
@@ -213,10 +208,10 @@ function CreateSpot() {
             minLength="30"
           />
         </label>
-        
-
-        <h2>Create a title for your spot</h2>
-        <p>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
+</div>        
+<div data-testid="section-3">
+        <h2 data-testid="section-3-heading">Create a title for your spot</h2>
+        <p data-testid="section-3-caption">Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
         {errors.title && <p className="errorMessage">{errors.title}</p>}
         <label>
           <input
@@ -226,10 +221,10 @@ function CreateSpot() {
             placeholder="Name of your spot"
           />
         </label>
-        
-
-        <h2>Set a base price for your spot</h2>
-        <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+</div>
+<div data-testid="section-4">
+        <h2 data-testid="section-4-heading">Set a base price for your spot</h2>
+        <p data-testid="section-4-caption" >Competitive pricing can help your listing stand out and rank higher in search results.</p>
         {errors.price && <p className="errorMessage">{errors.price}</p>}
         <label>
           <div className="priceLabel">
@@ -242,13 +237,13 @@ function CreateSpot() {
             />
           </div>
         </label>
-        
-
-        <h2>Liven up your spot with photos</h2>
-        <p>Submit a link to at least one photo to publish your spot.</p>
+</div>        
+<div data-testid="section-5">
+        <h2 data-testid="section-5-heading">Liven up your spot with photos</h2>
+        <p data-testid="section-5-caption">Submit a link to at least one photo to publish your spot.</p>
         <label>
           <input
-            type="text"
+            type="url"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
             placeholder="Preview Image URL"
@@ -257,7 +252,7 @@ function CreateSpot() {
         {errors.previewImage && <p className="errorMessage">{errors.previewImage}</p>}
         <label>
           <input
-            type="text"
+            type="url"
             value={image1}
             onChange={(e) => setImage1(e.target.value)}
             placeholder="Image URL"
@@ -266,7 +261,7 @@ function CreateSpot() {
         {errors.image1 && <p className="errorMessage">{errors.image1}</p>}
         <label>
           <input
-            type="text"
+            type="url"
             value={image2}
             onChange={(e) => setImage2(e.target.value)}
             placeholder="Image URL"
@@ -275,7 +270,7 @@ function CreateSpot() {
         {errors.image2 && <p className="errorMessage">{errors.image2}</p>}
         <label>
           <input
-            type="text"
+            type="url"
             value={image3}
             onChange={(e) => setImage3(e.target.value)}
             placeholder="Image URL"
@@ -284,14 +279,14 @@ function CreateSpot() {
         {errors.image3 && <p className="errorMessage">{errors.image3}</p>}
         <label>
           <input
-            type="text"
+            type="url"
             value={image4}
             onChange={(e) => setImage4(e.target.value)}
             placeholder="Image URL"
           />
         </label>
         {errors.image4 && <p className="errorMessage">{errors.image4}</p>}
-
+</div>
         <button type="submit" className="createSpotButton">Create Spot</button>
       </form>
     </div>

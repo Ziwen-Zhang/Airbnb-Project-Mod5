@@ -59,12 +59,13 @@ export const getSpotDetail = (spotId) => async (dispatch) => {
 };
 
 export const addSpotThunk = (spotData) => async (dispatch) => {
+  const { lat = 55, lng = 55, ...restSpotData } = spotData;
     const res = await csrfFetch("/api/spots", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(spotData),
+      body: JSON.stringify({ lat, lng, ...restSpotData }),
     });
   
     if (res.ok) {
@@ -96,12 +97,13 @@ export const addSpotImageThunk = (spotId, image) => async () => {
   };
   
 export const updateSpotThunk = (spotId,newData) => async()=> {
+  const { lat = 55, lng = 55, ...restSpotData } = newData;
     const res = await csrfFetch(`/api/spots/${spotId}`,{
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newData),
+      body: JSON.stringify({ lat, lng, ...restSpotData }),
     })
     if (res.ok) {
       const newSpot = await res.json();

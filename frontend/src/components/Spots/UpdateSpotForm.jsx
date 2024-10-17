@@ -57,22 +57,22 @@ function UpdateSpotForm() {
     if (!title) validationErrors.title = "Title is required";
     if (!price) validationErrors.price = "Price per night is required";
 
-    if (!latitude) {
-      validationErrors.latitude = "Latitude is required";
-    } else {
-      const lat = parseFloat(latitude);
-      if (isNaN(lat) || lat < -90 || lat > 90) {
-        validationErrors.latitude = "Latitude must be a number between -90 and 90";
-      }
-    }
-    if (!longitude) {
-      validationErrors.longitude = "Longitude is required";
-    } else {
-      const lng = parseFloat(longitude);
-      if (isNaN(lng) || lng < -180 || lng > 180) {
-        validationErrors.longitude = "Longitude must be a number between -180 and 180";
-      }
-    }
+    // if (!latitude) {
+    //   validationErrors.latitude = "Latitude is required";
+    // } else {
+    //   const lat = parseFloat(latitude);
+    //   if (isNaN(lat) || lat < -90 || lat > 90) {
+    //     validationErrors.latitude = "Latitude must be a number between -90 and 90";
+    //   }
+    // }
+    // if (!longitude) {
+    //   validationErrors.longitude = "Longitude is required";
+    // } else {
+    //   const lng = parseFloat(longitude);
+    //   if (isNaN(lng) || lng < -180 || lng > 180) {
+    //     validationErrors.longitude = "Longitude must be a number between -180 and 180";
+    //   }
+    // }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -85,8 +85,8 @@ function UpdateSpotForm() {
       address,
       city,
       state,
-      lat: parseFloat(latitude),
-      lng: parseFloat(longitude),
+      // lat: parseFloat(latitude),
+      // lng: parseFloat(longitude),
       description,
       name: title,
       price,
@@ -211,7 +211,7 @@ function UpdateSpotForm() {
           </div>
         </label>
 
-        <button type="submit" className="updateSpotButton">Update Spot</button>
+        <button type="submit" className="updateSpotButton">Update your Spot</button>
       </form>
     </div>
   );
