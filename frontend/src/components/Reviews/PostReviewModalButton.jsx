@@ -3,7 +3,7 @@ import PostReviewFormModal from './PostReviewFormModal';
 
 function PostReviewButton() {
   return (
-    <div className="PostReviewButton">
+    <div className="PostReviewButton" data-testid='review-button'>
       <OpenModalButton
         modalComponent={<PostReviewFormModal />}
         buttonText="Post Your Review"

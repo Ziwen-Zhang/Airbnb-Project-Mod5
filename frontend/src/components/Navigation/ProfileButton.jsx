@@ -9,14 +9,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { clearUserReviews } from '../../store/review';
-
+import { Link } from 'react-router-dom';
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
-  const redirectingNew = () => {
-    navigate(`/spots/new`)
-  };
+  // const redirectingNew = () => {
+  //   navigate(`/spots/new`)
+  // };
   const redirectingManage = ()=>{
     navigate('/spots/current')
   }
@@ -56,31 +56,33 @@ function ProfileButton({ user }) {
   
   return (
     <div className='upperRightMenu'>
-      {user && (<p className='createNewSpotText' onClick={redirectingNew}>Create a new spot</p>)}
-      <button onClick={toggleMenu} className="profile-button">
+      {user && (<Link to="/spots/new" className='createNewSpotText'>Create a New Spot</Link>)}
+      <button onClick={toggleMenu} className="profile-button" data-testid='user-menu-button'>
       <FontAwesomeIcon icon={faBars}/>
         <FaUserCircle />
       </button>
-      <div className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef} data-testid='user-dropdown-menu'>
         {user ? (
           <>
             <div>{user.username}</div>
-            <div>Hello, {user.firstName}</div>
-            <div>{user.email}</div>
-            <button onClick={redirectingManage}>Manage Spot</button>
+            <div data-testid='Hello, Demo'>Hello, {user.firstName}</div>
+            <div data-testid='demo@user.io'>{user.email}</div>
+            <button data-testid='manage-spots-link' onClick={redirectingManage}>Manage Spot</button>
             <div>
-              <button onClick={logout}>Log Out</button>
+              <button onClick={logout} data-testid='Log out'>Log Out</button>
             </div>
           </>
         ) : (
           <>
             <OpenModalMenuItem
               itemText="Sign Up"
+              data-testid='Sign Up'
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
             <OpenModalMenuItem
               itemText="Log In"
+              data-testid='Log in'
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />

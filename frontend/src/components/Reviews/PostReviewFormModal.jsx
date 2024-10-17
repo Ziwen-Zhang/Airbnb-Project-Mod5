@@ -22,11 +22,7 @@ function PostReviewFormModal() {
         setErrors([]);
     }, []);
 
-    const isSubmitDisabled = review.length < 10 || rating === 0;
-
-    const handleMouseLeave = () => {
-        setActiveRating(rating);
-        };
+    const submitDisabled = review.length < 10 || rating === 0;
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,7 +42,7 @@ function PostReviewFormModal() {
     };
     return (
         <>
-        <form className= 'postReviewForm'onSubmit={handleSubmit}>
+        <form className= 'postReviewForm'onSubmit={handleSubmit} data-testid="review-modal">
             <label className="reviewCommentSection">
             <span className="reviewTitle">How was your stay?</span>
             {errors.length > 0 && (<span>{errors}</span>)}
@@ -55,32 +51,19 @@ function PostReviewFormModal() {
                 onChange={(e) => setReview(e.target.value)}
                 placeholder="Leave your review here..."
             />
+            </label >
+            <label className="starsSection" onMouseLeave={()=>setActiveRating(rating)}>
+                {[1, 2, 3, 4, 5].map((starNumber) => (
+                    <label key={starNumber} className="star" onMouseEnter={() => setActiveRating(starNumber)} onClick={() => setRating(starNumber)} data-testid="star-rating">
+
+                    <FontAwesomeIcon icon={activeRating >= starNumber ? solidStar : emptyStar} onClick={() => setRating(starNumber)} data-testid="star-rating"/>
+
+                    </label>
+                ))}
             </label>
-            <div className="starsSection" onMouseLeave={handleMouseLeave}>
-            <div 
-                onMouseEnter={() => setActiveRating(1)} onClick={() => setRating(1)}>
-                <FontAwesomeIcon icon={activeRating >= 1 ? solidStar : emptyStar} />
-            </div>
-            <div
-                onMouseEnter={() => setActiveRating(2)} onClick={() => setRating(2)}>
-                <FontAwesomeIcon icon={activeRating >= 2 ? solidStar : emptyStar}/>
-            </div>
-            <div
-                onMouseEnter={() => setActiveRating(3)} onClick={() => setRating(3)}>
-                <FontAwesomeIcon icon={activeRating >= 3 ? solidStar : emptyStar}/>
-            </div>
-            <div
-                onMouseEnter={() => setActiveRating(4)} onClick={() => setRating(4)}>
-                <FontAwesomeIcon icon={activeRating >= 4 ? solidStar : emptyStar}/>
-            </div>
-            <div
-                onMouseEnter={() => setActiveRating(5)} onClick={() => setRating(5)}>
-                <FontAwesomeIcon icon={activeRating >= 5 ? solidStar : emptyStar}/>
-            </div>
-            </div>
-            
+
             <div className="submitButtonSection">
-            <button className='reviewSubmitButton'type="submit" disabled={isSubmitDisabled}> Submit Your Review </button>
+            <button className='reviewSubmitButton'type="submit" disabled={submitDisabled}> Submit Your Review </button>
             </div>
         </form>
         </>

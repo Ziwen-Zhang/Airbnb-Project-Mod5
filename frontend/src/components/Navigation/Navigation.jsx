@@ -11,11 +11,11 @@ function Navigation({ isLoaded }) {
   const dispatch = useDispatch()
   return (
     <nav className='navigation'>
-      <div className="logo" onClick={() => {
+      <div className="logo" data-testid='logo'onClick={() => {
         dispatch(clearSpotReviews())
         navigate('/')
         }}>
-        <img src="/favicon.ico" alt="logo" className='logo'/>
+        <img src="/favicon.ico" alt="logo" className='logo' data-testid='favicon'/>
         <span className="logo-text">Airdnd</span>
       </div>
       {isLoaded && (

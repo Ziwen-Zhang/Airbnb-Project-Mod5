@@ -17,7 +17,7 @@ const StarAndRating = ({ avgRating }) => {
   }
 
   return (
-    <div className="starRating">
+    <div className="starRating" data-testid='spot-rating'>
       <FontAwesomeIcon icon={faStar} />
       <span>{formatRating}</span>
     </div>
