@@ -12,51 +12,61 @@ module.exports = {
     await SpotImage.bulkCreate([
       {
         spotId:1,
-        url:'/preview.png',
+        url:'/preview1.png',
         preview:true
       },
       {
         spotId:2,
-        url:'/preview.png',
+        url:'/preview2.png',
         preview:true
       },
       {
         spotId:3,
-        url:'/preview.png',
+        url:'/preview3.png',
         preview:true
       },      {
         spotId:4,
-        url:'/preview.png',
+        url:'/preview4.png',
         preview:true
       },      {
         spotId:5,
-        url:'/preview.png',
+        url:'/preview5.png',
         preview:true
       },{
         spotId:6,
-        url:'/preview.png',
+        url:'/preview6.png',
         preview:true
       },
 
-      { spotId: 1, url: '/detail1.png', preview: false },
-      { spotId: 1, url: '/detail2.png', preview: false },
-      { spotId: 1, url: '/detail3.png', preview: false },
-      { spotId: 1, url: '/detail4.png', preview: false },
+      { spotId: 1, url: '/spot1detail1.png', preview: false },
+      { spotId: 1, url: '/spot1detail2.png', preview: false },
+      { spotId: 1, url: '/spot1detail3.png', preview: false },
+      { spotId: 1, url: '/spot1detail4.png', preview: false },
 
-      { spotId: 2, url: '/detail1.png', preview: false },
-      { spotId: 2, url: '/detail2.png', preview: false },
-      { spotId: 2, url: '/detail3.png', preview: false },
-      { spotId: 2, url: '/detail4.png', preview: false },
+      { spotId: 2, url: '/spot2detail1.png', preview: false },
+      { spotId: 2, url: '/spot2detail2.png', preview: false },
+      { spotId: 2, url: '/spot2detail3.png', preview: false },
+      { spotId: 2, url: '/spot2detail4.png', preview: false },
 
-      { spotId: 3, url: '/detail1.png', preview: false },
-      { spotId: 3, url: '/detail2.png', preview: false },
-      { spotId: 3, url: '/detail3.png', preview: false },
-      { spotId: 3, url: '/detail4.png', preview: false },
+      { spotId: 3, url: '/spot3detail1.png', preview: false },
+      { spotId: 3, url: '/spot3detail2.png', preview: false },
+      { spotId: 3, url: '/spot3detail3.png', preview: false },
+      { spotId: 3, url: '/spot3detail4.png', preview: false },
 
-      { spotId: 4, url: '/detail1.png', preview: false },
-      { spotId: 4, url: '/detail2.png', preview: false },
-      { spotId: 4, url: '/detail3.png', preview: false },
-      { spotId: 4, url: '/detail4.png', preview: false },
+      { spotId: 4, url: '/spot4detail1.png', preview: false },
+      { spotId: 4, url: '/spot4detail2.png', preview: false },
+      { spotId: 4, url: '/spot4detail3.png', preview: false },
+      { spotId: 4, url: '/spot4detail4.png', preview: false },
+
+      { spotId: 5, url: '/spot5detail1.png', preview: false },
+      { spotId: 5, url: '/spot5detail2.png', preview: false },
+      { spotId: 5, url: '/spot5detail3.png', preview: false },
+      { spotId: 5, url: '/spot5detail4.png', preview: false },
+
+      { spotId: 6, url: '/spot6detail1.png', preview: false },
+      { spotId: 6, url: '/spot6detail2.png', preview: false },
+      { spotId: 6, url: '/spot6detail3.png', preview: false },
+      { spotId: 6, url: '/spot6detail4.png', preview: false },
     ])
   },
 

@@ -13,7 +13,7 @@ module.exports = {
       {
         spotId: 1,
         userId: 1,
-        review: 'test review',
+        review: 'Nice house with perfect view of the Youtei mountain and nice Mika welcomed us. We owned the entire house for one night and everything was equipped. Kid loved it much!',
         stars: 3,
       },
       {
